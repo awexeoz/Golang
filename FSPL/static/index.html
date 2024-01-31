@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <title>Laptop Store</title>
+</head>
+<body>
+<div class="container">
+    <h1>Laptop Store</h1>
+
+    <!-- Обновленная форма -->
+    <form id="search-form">
+        <div class="form-row">
+            <label for="filter">Filter by Name:</label>
+            <input type="text" id="filter" name="filter" placeholder="Enter laptop name">
+        </div>
+
+        <div class="form-row">
+            <label for="sort">Sort by:</label>
+            <select id="sort" name="sort">
+                <option value="">-- No Sorting --</option>
+                <option value="name">Name (Asc)</option>
+                <option value="-name">Name (Desc)</option>
+                <option value="price">Price (Asc)</option>
+                <option value="-price">Price (Desc)</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label for="page">Page:</label>
+            <input type="number" id="page" name="page" value="1" min="1">
+        </div>
+
+        <div class="form-row">
+            <button type="submit">Search</button>
+        </div>
+    </form>
+
+    <hr>
+
+    <h2>Search Results</h2>
+    <table id="laptops-list">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+
+    <div id="rateLimitMessage" style="color: red;"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('search-form');
+        const laptopsTableBody = document.querySelector('#laptops-list tbody');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = new FormData(form);
+            const queryParams = new URLSearchParams(formData).toString();
+
+            fetch(`/laptops?${queryParams}`)
+                .then(response => {
+                    if (response.status === 429) {
+                        throw new Error('Rate limit exceeded. Please try again later.');
+                    } else {
+                        return response.json();
+                    }
+                })
+                .then(data => {
+                    laptopsTableBody.innerHTML = '';
+
+                    data.forEach(laptop => {
+                        const row = laptopsTableBody.insertRow();
+
+                        const cellName = row.insertCell(0);
+                        cellName.textContent = laptop.name;
+
+                        const cellPrice = row.insertCell(1);
+                        cellPrice.textContent = `$${laptop.price}`;
+                    });
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
+        });
+    });
+
+</script>
+</body>

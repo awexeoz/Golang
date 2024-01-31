@@ -1,0 +1,89 @@
+body {
+    font-family: 'Times New Roman';
+    margin: 0;
+    padding: 0;
+    background: url("https://top-fon.com/uploads/posts/2023-02/1675271786_top-fon-com-p-kompyuternii-fon-dlya-prezentatsii-123.jpg")center center fixed no-repeat;
+    background-size: cover;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 100px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1, h2 {
+    color: #002137;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #002137;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #002137;
+}
+
+
+hr {
+    border: 0;
+    height: 1px;
+    background: #ddd;
+    margin: 20px 0;
+}
+
+#laptops-list {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#laptops-list th, #laptops-list td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+#laptops-list th {
+    background-color: #002137;
+    color: #fff;
+}
+
+#laptops-list tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
